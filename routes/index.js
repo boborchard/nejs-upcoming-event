@@ -34,7 +34,8 @@ router.get("/", function(req, res, next) {
           res.render("index", {
             title: "NebraskaJS",
             data: returnValue[0],
-            attendees: returnValueAttendees
+            attendees: returnValueAttendees,
+            staticmapkey: {{KEY HERE}}
           })
         })
       })
