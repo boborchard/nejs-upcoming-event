@@ -1,0 +1,89 @@
+<div class="container mx-auto my-10 max-w-screen-md">
+  <div class="mb-10 text-center">
+    <img
+      src="https://nebraskajs.com/img/nebraska-outline.png"
+      class="inline w-40 h-auto"
+    />
+  </div>
+  <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+    <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        {{title}}
+      </h3>
+      <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-600">
+        Join {{data.yes_rsvp_count}} other JS devs for {{{data.name}}}
+      </p>
+    </div>
+    <div>
+      <dl>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dd class="text-sm leading-5 font-medium text-gray-600">
+            Description
+          </dd>
+          <dt class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            {{{data.description}}}
+          </dt>
+        </div>
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dd class="text-sm leading-5 font-medium text-gray-600">
+            Location
+          </dd>
+          <dt class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            <span class="font-medium">{{data.venue.name}}</span><br />
+            {{data.venue.address_1}}<br />
+            {{data.venue.city}}, {{data.venue.state}} {{data.venue.zip}}<br />
+            <img
+              class="mt-8"
+              src="https://maps.googleapis.com/maps/api/staticmap?center={{{data.venue.lat}}},{{{data.venue.lon}}}&zoom=14&size=700x220&key=AIzaSyCPYj7qIDkinLzCYRR_r_7eANKqeM-kges&markers=color:yellow%7Clabel:NJS%7C{{{data.venue.lat}}},{{{data.venue.lon}}}" />
+          </dt>
+        </div>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dd class="text-sm leading-5 font-medium text-gray-600">
+            RSVP to this event
+          </dd>
+          <dt class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            <a href="{{{data.link}}}" target="_blank">{{{data.link}}}</a>
+          </dt>
+        </div>
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dd class="text-sm leading-5 font-medium text-gray-600">
+            Guest List
+          </dd>
+          <dt class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+            <ul class="border border-gray-200 rounded-md">
+              {{#each attendees}}
+                <li
+                  id="{{{member.id}}}"
+                  class="pl-3 pr-4 py-3 flex items-center justify-between text-sm leading-5">
+                  <div class="w-0 flex-1 flex items-center">
+                    {{#if member.photo.photo_link}}
+                      <img
+                        class="rounded-full w-8 h-8 object-cover"
+                        src="{{{member.photo.photo_link}}}"
+                      />
+                    {{else}}
+                      <div
+                        class="rounded-full w-8 h-8 bg-gray-200"
+                      ></div>
+                    {{/if}}
+                    <span class="ml-2 flex-1 w-0 truncate">
+                      {{member.name}}
+                    </span>
+                  </div>
+                  <div class="ml-4 flex-shrink-0">
+                    <a
+                      href="https://www.meetup.com/nebraskajs/members/{{{member.id}}}/"
+                      class="font-medium text-indigo-600 hover:text-indigo-500 transition duration-150 ease-in-out"
+                      target="_blank">
+                      Visit Profile
+                    </a>
+                  </div>
+                </li>
+              {{/each}}
+            </ul>
+          </dt>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>
